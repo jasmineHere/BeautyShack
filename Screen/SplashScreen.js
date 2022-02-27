@@ -12,7 +12,7 @@ const SplashScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       
-            <Button title='Skip Splash' onPress={navigation.replace('Auth')}/>
+            <Button title='Skip Splash' onPress={navigation.navigate('Auth')}/>
       <ActivityIndicator
         color="#FFFFFF"
         size="large"
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#008080',
+    backgroundColor: '#307ecc',
   },
   activityIndicator: {
     alignItems: 'center',
