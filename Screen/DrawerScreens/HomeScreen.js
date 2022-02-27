@@ -32,7 +32,7 @@ We have a Splash screen, a login screen, registeration screen, a home screen and
             textAlign: 'center',
             color: 'grey',
           }}>
-          Splash, Login and Register Example{'\n'}React Native
+          HOME
         </Text>
         <Text
           style={{
@@ -40,7 +40,7 @@ We have a Splash screen, a login screen, registeration screen, a home screen and
             textAlign: 'center',
             color: 'grey',
           }}>
-          www.aboutreact.com
+            Runtime Terror
         </Text>
       </View>
     </SafeAreaView>

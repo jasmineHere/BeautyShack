@@ -31,6 +31,7 @@ const RegisterScreen = (props) => {
   const emailInputRef = createRef();
   const ageInputRef = createRef();
   const addressInputRef = createRef();
+  
   return (
     <View style={{flex: 1, backgroundColor: '#307ecc'}}>
       <Loader loading={loading} />
