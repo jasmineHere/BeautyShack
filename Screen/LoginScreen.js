@@ -37,8 +37,8 @@ const LoginScreen = ({navigation}) => {
         }}>
         <View>
           <KeyboardAvoidingView enabled>
-            <View style={{alignItems: 'center'}}>
-              <Image
+          {/*<View style={{alignItems: 'center'}}>
+               <Image
                 source={require('../Image/aboutreact.png')}
                 style={{
                   width: '50%',
@@ -46,8 +46,8 @@ const LoginScreen = ({navigation}) => {
                   resizeMode: 'contain',
                   margin: 30,
                 }}
-              />
-            </View>
+              /> 
+              </View>*/}
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
@@ -67,7 +67,6 @@ const LoginScreen = ({navigation}) => {
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
-                onChangeText={(UserPassword) => setUserPassword(UserPassword)}
                 placeholder="Enter Password" //12345
                 placeholderTextColor="#8b9cb5"
                 keyboardType="default"
@@ -85,7 +84,7 @@ const LoginScreen = ({navigation}) => {
             <TouchableOpacity
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              onPress={handleSubmitPress}>
+              onPress = {navigation.replace('DrawerNavigationRoutes')}>
               <Text style={styles.buttonTextStyle}>LOGIN</Text>
             </TouchableOpacity>
             <Text

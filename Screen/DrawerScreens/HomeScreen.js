@@ -21,7 +21,7 @@ const HomeScreen = () => {
               textAlign: 'center',
               marginBottom: 16,
             }}>
-            Example of Splash, Login and Sign Up in React Native
+We have a Splash screen, a login screen, registeration screen, a home screen and a settings screen.            {'\n\n'}
             {'\n\n'}
             This is the Home Screen
           </Text>

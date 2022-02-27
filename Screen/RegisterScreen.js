@@ -2,6 +2,7 @@
 // https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
+import { NavigationContainer } from '@react-navigation/native';
 import React, {useState, createRef} from 'react';
 import {
   StyleSheet,
@@ -118,7 +119,7 @@ const RegisterScreen = (props) => {
           <TouchableOpacity
             style={styles.buttonStyle}
             activeOpacity={0.5}
-            onPress={handleSubmitButton}>
+            onPress = {navigation.replace('DrawerNavigationRoutes')}>
             <Text style={styles.buttonTextStyle}>REGISTER</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
