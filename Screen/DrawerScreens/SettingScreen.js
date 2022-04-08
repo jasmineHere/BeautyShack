@@ -21,7 +21,7 @@ const SettingsScreen = () => {
               textAlign: 'center',
               marginBottom: 16,
             }}>
-We have a Splash screen, a login screen, registeration screen, a home screen and a settings screen.            {'\n\n'}
+We have a Splash screen, a login screen, registration screen, a home screen and a settings screen.            {'\n\n'}
             This is the Settings Screen
           </Text>
         </View>

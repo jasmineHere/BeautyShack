@@ -4,25 +4,25 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#ffffff',
+      backgroundColor: '#fefffe',
       alignItems: 'center',
       justifyContent: 'center',
     },
     logoL:{
       fontWeight:"bold",
       fontSize:50,
-      color:"#fb5b5a",
+      color:"#bd4b52",
       marginBottom:40
     },  
     logoS:{
       fontWeight:"bold",
       fontSize:20,
-      color:"#fb5b5a",
+      color:"#bd4b52",
       marginBottom:40
     },
     inputView:{
       width:"80%",
-      backgroundColor:"#a5c9fd",
+      backgroundColor:"#e5fcf5",
       borderRadius:25,
       height:50,
       marginBottom:20,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
     loginBtn:{
       width:"80%",
-      backgroundColor:"#fb5b5a",
+      backgroundColor:"#bd4b52",
       borderRadius:25,
       height:50,
       alignItems:"center",

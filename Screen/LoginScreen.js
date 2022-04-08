@@ -15,6 +15,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Loader from './Components/Loader';
 
@@ -23,7 +24,59 @@ const LoginScreen = ({navigation}) => {
   const [userPassword, setUserPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
+
   const passwordInputRef = createRef();
+
+  const handleSubmitPress = () => {
+    setErrortext('');
+    if (!userEmail) {
+      alert('Please fill Email');
+      return;
+    }
+    if (!userPassword) {
+      alert('Please fill Password');
+      return;
+    }
+    setLoading(true);
+    let dataToSend = {email: userEmail, password: userPassword};
+    let formBody = [];
+    for (let key in dataToSend) {
+      let encodedKey = encodeURIComponent(key);
+      let encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    formBody = formBody.join('&');
+
+    fetch('http://localhost:3000/api/user/login', {
+      method: 'POST',
+      body: formBody,
+      headers: {
+        //Header Defination
+        'Content-Type':
+        'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //Hide Loader
+        setLoading(false);
+        console.log(responseJson);
+        // If server response message same as Data Matched
+        if (responseJson.status === 'success') {
+          AsyncStorage.setItem('user_id', responseJson.data.email);
+          console.log(responseJson.data.email);
+          navigation.replace('DrawerNavigationRoutes');
+        } else {
+          setErrortext(responseJson.msg);
+          console.log('Please check your email id or password');
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        setLoading(false);
+        console.error(error);
+      });
+  };
 
   return (
     <View style={styles.mainBody}>
@@ -37,28 +90,31 @@ const LoginScreen = ({navigation}) => {
         }}>
         <View>
           <KeyboardAvoidingView enabled>
-          {/*<View style={{alignItems: 'center'}}>
-               <Image
-                source={require('../Image/aboutreact.png')}
+            <View style={{alignItems: 'center'}}>
+              <Image
+                source={require('../Image/logo.png')}
                 style={{
                   width: '50%',
                   height: 100,
                   resizeMode: 'contain',
                   margin: 30,
                 }}
-              /> 
-              </View>*/}
+              />
+            </View>
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
-                onChangeText={(UserEmail) => setUserEmail(UserEmail)}
+                onChangeText={(UserEmail) =>
+                  setUserEmail(UserEmail)
+                }
                 placeholder="Enter Email" //dummy@abc.com
-                placeholderTextColor="#8b9cb5"
+                placeholderTextColor="#fefffe"
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
                 onSubmitEditing={() =>
-                  passwordInputRef.current && passwordInputRef.current.focus()
+                  passwordInputRef.current &&
+                  passwordInputRef.current.focus()
                 }
                 underlineColorAndroid="#f000"
                 blurOnSubmit={false}
@@ -67,8 +123,11 @@ const LoginScreen = ({navigation}) => {
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
+                onChangeText={(UserPassword) =>
+                  setUserPassword(UserPassword)
+                }
                 placeholder="Enter Password" //12345
-                placeholderTextColor="#8b9cb5"
+                placeholderTextColor="#fefffe"
                 keyboardType="default"
                 ref={passwordInputRef}
                 onSubmitEditing={Keyboard.dismiss}
@@ -79,12 +138,14 @@ const LoginScreen = ({navigation}) => {
               />
             </View>
             {errortext != '' ? (
-              <Text style={styles.errorTextStyle}> {errortext} </Text>
+              <Text style={styles.errorTextStyle}>
+                {errortext}
+              </Text>
             ) : null}
             <TouchableOpacity
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              onPress = {navigation.replace('DrawerNavigationRoutes')}>
+              onPress={handleSubmitPress}>
               <Text style={styles.buttonTextStyle}>LOGIN</Text>
             </TouchableOpacity>
             <Text
@@ -104,7 +165,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#363d46',
     alignContent: 'center',
   },
   SectionStyle: {

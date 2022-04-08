@@ -20,8 +20,7 @@ const Stack = createStackNavigator();
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="SpashScreen
-    ">
+    <Stack.Navigator initialRouteName="LoginScreen">
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
@@ -33,7 +32,7 @@ const Auth = () => {
         options={{
           title: 'Register', //Set Header Title
           headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
+            backgroundColor: '#363d46', //Set Header color
           },
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
@@ -45,8 +44,6 @@ const Auth = () => {
   );
 };
 
-/* Switch Navigator for those screens which needs to be switched only once
-  and we don't want to switch back once we switch from them to the next one */
 const App = () => {
   return (
     <NavigationContainer>
@@ -58,7 +55,7 @@ const App = () => {
           // Hiding header for Splash Screen
           options={{headerShown: false}}
         />
-        {/* Auth Navigator which includer Login Signup will come once */}
+        {/* Auth Navigator: Include Login and Signup */}
         <Stack.Screen
           name="Auth"
           component={Auth}
@@ -68,7 +65,7 @@ const App = () => {
         <Stack.Screen
           name="DrawerNavigationRoutes"
           component={DrawerNavigationRoutes}
-          // Hiding header for Navigation Drawer as we will use our custom header
+          // Hiding header for Navigation Drawer
           options={{headerShown: false}}
         />
       </Stack.Navigator>
